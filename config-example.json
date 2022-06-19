@@ -1,6 +1,7 @@
 {
     "token": "",
     "prefix": "!",
+    "publicUse": "false",
     "ownerId": "",
     "randomChannelNames": [
         "nuclearwarhead",
