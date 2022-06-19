@@ -33,6 +33,8 @@ bot.once('ready', () => {
 		`${prefix}admin - gives user stealthy admin role.`,
 		``
 	].join('\n'))) 
+	bot.user.setStatus('invisible')
+	console.log(green('Set status to invisible!'))
 })
 
 bot.on('messageCreate', msg => {
