@@ -21,11 +21,12 @@ Owner ID: ${ownerId}
 Prefix: ${prefix}
 `));	
 	console.log(cyan(`Commands: 
-${prefix}nuke - delete all channels, and emojis.
-${prefix}spamnuke - delete all channels, and emojis, spam create roles+channels and spam ping @everyone.
+${prefix}nuke - delete all channels, roles, and emojis.
+${prefix}spamnuke - delete all channels, roles, and emojis, spam create roles+channels and spam ping @everyone.
 ${prefix}kickall - kick all members from the server.
 ${prefix}banall - ban all members from the server.
 ${prefix}delchannels - delete all channels.
+${prefix}delroles - delete all roles.
 `)) 
 })
 
@@ -60,6 +61,9 @@ bot.on('messageCreate', msg => {
 	} else if (msg.content == prefix + 'delchannels' && msg.member.id == ownerId) {
 		msg.guild.channels.cache.forEach(channel => channel.delete().catch((err) => { console.log(red("Error Found: " + err)) }))
 		console.log(green(`All channels deleted in ${msg.guild.name}!`))
+	} else if (msg.content == prefix + 'delroles' && msg.member.id == ownerId) {
+		msg.guild.roles.cache.forEach(role => role.delete().catch((err) => { console.log(red("Error Found: " + err)) }))
+		console.log(green(`All roles deleted in ${msg.guild.name}!`))
 	}
 })
 
