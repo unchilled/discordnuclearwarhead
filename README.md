@@ -21,15 +21,13 @@ Your chosen prefix, which is by default `!`, will need to be input before the co
 
 `delroles` - delete all roles.
 
+`admin` - gives user stealthy admin role.
+
 ## Warnings
 Currently, there is no protection against the bot banning you from the server along with everyone else when you run the `banall` command. I will add that functionality in a future update.
 
 The bot will create up to 100 channels and 100 roles at a time when using the `spamnuke` command, and ping @everyone 30 times in each channel, for a total of 3000 pings. This is because doing any more than that will get your bot rate limited.
 
 ## Planned Features
-
-`banall` and `kickall` commands do not kick the bot owner
-
-`admin` command that gives you a stealthy administrator role in the server
 
 Mass creation commands seperate from `spamnuke`
