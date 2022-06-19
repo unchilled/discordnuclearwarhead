@@ -1,0 +1,16 @@
+{
+  "name": "nuclear-warhead",
+  "version": "1.0.0",
+  "description": "A customizable and efficient Discord nuclear warhead.",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "unchilled",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/builders": "^0.15.0",
+    "chalk": "^4.1.2",
+    "discord.js": "^13.8.0"
+  }
+}
