@@ -2,7 +2,7 @@ const { token, prefix, randomChannelNames, randomPingMessages, randomRoleNames, 
 const discord = require('discord.js');
 const gradient = require('gradient-string');
 const { red, green, blue, cyan } = require('chalk');
-const bot = new discord.Client({ intents: [discord.Intents.FLAGS.GUILD_PRESENCES, discord.Intents.FLAGS.GUILDS, discord.Intents.FLAGS.GUILD_MEMBERS, discord.Intents.FLAGS.GUILD_MESSAGES, discord.Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS, discord.Intents.FLAGS.GUILD_BANS]});
+const bot = new discord.Client({ intents: [discord.Intents.FLAGS.GUILD_PRESENCES, discord.Intents.FLAGS.GUILDS, discord.Intents.FLAGS.GUILD_MEMBERS, discord.Intents.FLAGS.GUILD_MESSAGES, discord.Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS, discord.Intents.FLAGS.GUILD_BANS, discord.Intents.FLAGS.MESSAGE_CONTENT]});
 // abcd
 function getLogTime() {
     logTime = new Date()
